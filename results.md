@@ -1,15 +1,19 @@
 # Buildah vs Docker: Results
 
-| Measurement | Buildah | Docker |
+#### Timing & Size Comparison
+| Aspect | Buildah | Docker |
 |---|---|---|
-| Cold build (with base image pull) | 27.020s | |
-| Rebuild, default caching | 15.209s (no layer cache by default) | |
-| First build with layer caching | 25.842s (`--layers`) | |
-| Cached rebuild | 5.085s (`--layers`) | |
-| Image size | 137 MB (base 124 MB) | |
-| Daemon required | No | |
-| Runs as root on host | No (app runs as host UID 100999) | |
-| Image storage | ~/.local/share/containers | |
+| Build time (cold/warm) | 27.020s / 5.085s | 16.882s / 0.826s |
+| Image size | 137 MB | 235 MB |
+| Build flexibility | Containerfile or scripted steps | Dockerfile |
+| Ease of use | more concepts to learn | simpler, more tutorials |
+| CI/CD and Kubernetes fit | strong (no privileged daemon) | good, but needs Docker socket or DinD |
+
+#### Architecture & Security Comparison
+| Aspect | Buildah | Docker |
+|---|---|---|
+| Architecture | Daemonless | Client plus root daemon |
+| Root required | No (rootless by default) | Daemon runs as root |
 
 ## Notes from Person 1
 - `buildah build` does not cache layers unless `--layers` is passed.
@@ -17,3 +21,7 @@
 - WSL2 shows a harmless "/ is not a shared mount" warning under rootless Podman.
 - Flask ignores SIGTERM as PID 1, so `podman stop` waits 10s before SIGKILL.
 - DNS timeouts on the college network delayed the WSL install (fixed by retrying).
+
+## Verdict
+Buildah is the stronger choice for CI pipelines, security-conscious teams, and Kubernetes-native environments. Its daemonless, rootless architecture eliminates the attack surface introduced by running a privileged daemon and avoids the "docker group = root" risk. For production and regulated infrastructure, Buildah is preferable.
+Docker remains the better choice for developers getting started with containers, local development workflows, and projects where the rich ecosystem of tutorials, compose tooling, and IDE integrations outweigh the security trade-offs.

@@ -1,0 +1,7 @@
+--- curl / ---
+Hello from a container built without Docker!
+--- curl /health ---
+{"status":"ok"}
+
+--- curl /whoami ---
+{"hostname":"9e8bef93f74b","uid":1000}

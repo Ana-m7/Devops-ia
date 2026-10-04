@@ -1,0 +1,19 @@
+IMAGE          CREATED         CREATED BY                                      SIZE      COMMENT
+ae0ec7af5458   1 second ago    CMD ["python" "app.py"]                         0B        buildkit.dockerfile.v0
+<missing>      1 second ago    EXPOSE [5000/tcp]                               0B        buildkit.dockerfile.v0
+<missing>      1 second ago    USER appuser                                    0B        buildkit.dockerfile.v0
+<missing>      1 second ago    RUN /bin/sh -c useradd -m appuser # buildkit    69.6kB    buildkit.dockerfile.v0
+<missing>      1 second ago    COPY app/app.py . # buildkit                    12.3kB    buildkit.dockerfile.v0
+<missing>      1 second ago    RUN /bin/sh -c pip install --no-cache-dir -r…   15.5MB    buildkit.dockerfile.v0
+<missing>      2 seconds ago   COPY app/requirements.txt . # buildkit          12.3kB    buildkit.dockerfile.v0
+<missing>      2 seconds ago   WORKDIR /app                                    8.19kB    buildkit.dockerfile.v0
+<missing>      2 days ago      CMD ["python3"]                                 0B        buildkit.dockerfile.v0
+<missing>      2 days ago      RUN /bin/sh -c set -eux;  for src in idle3 p…   16.4kB    buildkit.dockerfile.v0
+<missing>      2 days ago      RUN /bin/sh -c set -eux;   savedAptMark="$(a…   44.6MB    buildkit.dockerfile.v0
+<missing>      2 days ago      ENV PYTHON_SHA256=c2c4321961fab0fb999d66e0ce…   0B        buildkit.dockerfile.v0
+<missing>      2 days ago      ENV PYTHON_VERSION=3.12.15                      0B        buildkit.dockerfile.v0
+<missing>      2 days ago      ENV GPG_KEY=7169605F62C751356D054A26A821E680…   0B        buildkit.dockerfile.v0
+<missing>      2 days ago      RUN /bin/sh -c set -eux;  apt-get update;  a…   13.1MB    buildkit.dockerfile.v0
+<missing>      2 days ago      ENV LANG=C.UTF-8                                0B        buildkit.dockerfile.v0
+<missing>      2 days ago      ENV PATH=/usr/local/bin:/usr/local/sbin:/usr…   0B        buildkit.dockerfile.v0
+<missing>      2 weeks ago     # debian.sh --arch 'arm64' out/ 'trixie' '@1…   110MB     debuerreotype 0.17
